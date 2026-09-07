@@ -22,11 +22,16 @@ jobs:
         with:
           gradle-version: '8.10'
 
+      - name: Preparar proyecto
+        run: |
+          unzip -q MyHomeTVAcademy_prototipo_v3.zip
+          echo "Proyecto preparado"
+
       - name: Compilar APK
-        run: gradle assembleDebug
+        run: gradle -p MyHomeTVAcademy assembleDebug
 
       - name: Guardar APK
         uses: actions/upload-artifact@v4
         with:
           name: MyHomeTVAcademy-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: MyHomeTVAcademy/app/build/outputs/apk/debug/app-debug.apk

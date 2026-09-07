@@ -25,7 +25,8 @@ jobs:
       - name: Preparar proyecto
         run: |
           unzip -q MyHomeTVAcademy_prototipo_v3.zip
-          echo "Proyecto preparado"
+          echo "android.useAndroidX=true" > MyHomeTVAcademy/gradle.properties
+          echo "android.enableJetifier=true" >> MyHomeTVAcademy/gradle.properties
 
       - name: Compilar APK
         run: gradle -p MyHomeTVAcademy assembleDebug
@@ -34,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MyHomeTVAcademy-APK
-          path: MyHomeTVAcademy/app/build/outputs/apk/debug/app-debug.apk
+          path: MyHomeTVAcademy/app/build/outputs/apk/debug/app-debug.apk 

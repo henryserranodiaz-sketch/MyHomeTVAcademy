@@ -25,13 +25,19 @@ jobs:
       - name: Preparar proyecto
         run: |
           unzip -q MyHomeTVAcademy_prototipo_v3.zip
+
           printf '%s\n' \
             'org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8' \
             'android.useAndroidX=true' \
             'android.enableJetifier=true' \
             'kotlin.code.style=official' \
             > MyHomeTVAcademy/gradle.properties
-          sed -i 's/JavaVersion.VERSION_1_8/JavaVersion.VERSION_17/g' MyHomeTVAcademy/app/build.gradle.kts
+
+          sed -i '/^android {/a\
+              compileOptions {\
+                  sourceCompatibility = JavaVersion.VERSION_17\
+                  targetCompatibility = JavaVersion.VERSION_17\
+              }' MyHomeTVAcademy/app/build.gradle.kts
 
       - name: Compilar APK
         run: gradle -p MyHomeTVAcademy assembleDebug

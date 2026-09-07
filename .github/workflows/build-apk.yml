@@ -33,6 +33,10 @@ jobs:
             'kotlin.code.style=official' \
             > MyHomeTVAcademy/gradle.properties
 
+          sed -i 's/^private data class StudentAccount/data class StudentAccount/' MyHomeTVAcademy/app/src/main/java/com/myhome/tvacademy/MainActivity.kt
+
+          sed -i 's/^private class LocalAccountRepository/class LocalAccountRepository/' MyHomeTVAcademy/app/src/main/java/com/myhome/tvacademy/MainActivity.kt
+
           sed -i '/^android {/a\
               compileOptions {\
                   sourceCompatibility = JavaVersion.VERSION_17\
